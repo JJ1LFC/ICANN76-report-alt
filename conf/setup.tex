@@ -1,0 +1,75 @@
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1em}
+
+\captionsetup{labelfont=bf}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\cftfigfont}{Fig.\ }
+\renewcommand{\cfttabfont}{Table\ }
+
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+1.5em}
+
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{0}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{1}
+\renewcommand{\bottomfraction}{0}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{1}
+
+%listings package
+\lstset{
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\smallitshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame=leftline,
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0pt,
+  xleftmargin=5pt,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=10pt,
+  lineskip=-0.5ex,
+  language=python
+}
+
+%japanese
+\setjamainfont{ipam.ttf}
+\setjasansfont{ipag.ttf}
+\setjamonofont{ipag.ttf}
+
+%itemize env spacing
+\let\olditemize\itemize
+\renewcommand{\itemize}{
+\olditemize
+\setlength{\itemsep}{1.2pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+}
+
+%header & footer
+\lhead{}
+\chead{ICANN76 参加報告書}
+\rhead{}
+
+\setlength{\headheight}{64pt}
+
+\lfoot{\textsf{JPNIC ICANN76 参加支援プログラム}}
+\cfoot{}
+\rfoot{\textsf{\thepage{}/{}\pageref{LastPage}}}
+
+%bib
+\makeatletter
+\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
+\def\@bstctlcite[#1]#2{\@bsphack
+\@for\@citeb:=#2\do{%
+\edef\@citeb{\expandafter\@firstofone\@citeb}%
+\if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}%
+\@esphack}
+\makeatother
